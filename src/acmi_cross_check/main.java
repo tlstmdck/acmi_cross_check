@@ -6,8 +6,8 @@ import java.io.InputStreamReader;
 import java.util.Set;
 
 public class main {
-	private static String[] user_list = {"tlstmdck","wogus0","dntmdqls0912","mont_4857","dbrhdwn123","qotnqls1998"}; //¹éÁØ id ÀÔ·Â
-	private static String[] input_problem_list = {"1181"};  //¹®Á¦ ¹øÈ£ ÀÔ·Â
+	private static String[] user_list = {"tlstmdck","wogus0","dntmdqls0912","mont_4857","dbrhdwn123","qotnqls1998","ljs20171103","wbo1026"}; //ë°±ì¤€ id ì…ë ¥
+	private static String[] input_problem_list = {""};  //ë¬¸ì œ ë²ˆí˜¸ ì…ë ¥
 	private static get_crowling[] instance_list;
 	
 	public static void load_problem() {
@@ -16,33 +16,33 @@ public class main {
 			instance_list[i] = new get_crowling(null, user_list[i]);
 		}
 	}
-	public static void cross_check() {
+	public static void cross_check(String problem) {
 		if(instance_list == null) {
-			System.out.println("µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù!!");
+			System.out.println("ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤!!");
 			return;
 		}
 		for(get_crowling instance : instance_list) {
 			Set<String> problem_list = instance.getProblem_list();
-			for (String input_problem : input_problem_list) {
-				if (problem_list.contains(input_problem) == true)
-					System.out.println("¹®Á¦¹øÈ£ : " + input_problem + " " + instance.getUser_id() + "°¡ ÀÌ¹Ì Ç¬ ¹®Á¦!");
-			}
+			if (problem_list.contains(problem) == true)
+				System.out.println("ë¬¸ì œë²ˆí˜¸ : " + problem + " " + instance.getUser_id() + "ê°€ ì´ë¯¸ í‘¼ ë¬¸ì œ!");
 		}
 	}
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		while (true) {
-			System.out.println("1. ¹®Á¦ ºÒ·¯¿À±â" + "     " + "2. Áßº¹Ã¼Å©" + "     "  + "3. Á¾·á");
+			System.out.println("1. ë¬¸ì œ ë¶ˆëŸ¬ì˜¤ê¸°" + "     " + "2. ì¤‘ë³µì²´í¬" + "     "  + "3. ì¢…ë£Œ");
 			String menu = br.readLine();
 			switch (menu) {
 				case "1": {
-					System.out.println("ºÒ·¯¿À´ÂÁß...");
+					System.out.println("ë¶ˆëŸ¬ì˜¤ëŠ”ì¤‘...");
 					load_problem();
-					System.out.println("ºÒ·¯¿À±â ¿Ï·á!");
+					System.out.println("ë¶ˆëŸ¬ì˜¤ê¸° ì™„ë£Œ!");
 					break;
 				}
 				case "2": {
-					cross_check();
+					System.out.print("ë¬¸ì œë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì‹œìš” >> ");
+					String problem = br.readLine();
+					cross_check(problem);
 					break;
 				}
 				case "3": {
